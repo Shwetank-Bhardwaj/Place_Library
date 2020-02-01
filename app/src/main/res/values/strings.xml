@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Place Library</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="category">Category</string>
+    <string name="address">Address Title</string>
+    <string name="address_detail">Address Detail</string>
+    <string name="elevation">Elevation</string>
+    <string name="lat">Lat</string>
+    <string name="longitude">Long</string>
+    <string name="image">image</string>
+    <string name="save">Save</string>
 </resources>
