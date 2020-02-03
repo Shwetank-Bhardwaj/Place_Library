@@ -15,15 +15,19 @@ import java.util.List;
 import edu.asu.msse.sbhard18.placelibrary.model.PlaceDescription;
 import edu.asu.msse.sbhard18.placelibrary.R;
 import edu.asu.msse.sbhard18.placelibrary.ui.DetailActivity;
+import edu.asu.msse.sbhard18.placelibrary.ui.EditActivity;
+import edu.asu.msse.sbhard18.placelibrary.ui.RecyclerViewEventListener;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.PlaceViewHolder> {
 
     private final Context mContext;
     private List<PlaceDescription> mPlaceList;
+    private RecyclerViewEventListener mRecyclerViewEventListener;
 
-    public MainAdapter(Context context, List<PlaceDescription> placeDescriptionList) {
+    public MainAdapter(Context context, List<PlaceDescription> placeDescriptionList, RecyclerViewEventListener recyclerViewEventListener) {
         this.mContext = context;
         this.mPlaceList = placeDescriptionList;
+        this.mRecyclerViewEventListener = recyclerViewEventListener;
     }
 
     @NonNull
@@ -40,9 +44,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.PlaceViewHolde
         holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, DetailActivity.class);
-                intent.putExtra("data", mPlaceList.get(holder.getAdapterPosition()));
-                mContext.startActivity(intent);
+                mRecyclerViewEventListener.onItemClickListener(mPlaceList.get(holder.getAdapterPosition()));
+            }
+        });
+        holder.name.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                mRecyclerViewEventListener.onItemLongClickListener(mPlaceList.get(holder.getAdapterPosition()));
+                return false;
             }
         });
     }
@@ -64,6 +73,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.PlaceViewHolde
 
     public void updateList(List<PlaceDescription> list){
         this.mPlaceList = list;
+        notifyDataSetChanged();
     }
 }
 

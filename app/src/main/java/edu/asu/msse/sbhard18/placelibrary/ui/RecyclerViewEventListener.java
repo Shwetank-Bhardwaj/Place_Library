@@ -1,4 +1,4 @@
-package edu.asu.msse.sbhard18.placelibrary.database;
+package edu.asu.msse.sbhard18.placelibrary.ui;
 /*
  * Copyright 2020  Shwetank Bhardwaj,
  *
@@ -16,22 +16,14 @@ package edu.asu.msse.sbhard18.placelibrary.database;
  * @author Shwetank Bhardwaj, sbhard18@asu.edu
  * Software Engineering, CIDSE, ASU Poly
  *
- * @version January 2020
+ * @version February 2020
  */
-
-import java.util.List;
 
 import edu.asu.msse.sbhard18.placelibrary.model.PlaceDescription;
 
-public interface PlaceManager {
+public interface RecyclerViewEventListener {
 
-    boolean add(PlaceDescription place);
+    void onItemLongClickListener(PlaceDescription placeDescription);
 
-    void remove(PlaceDescription place);
-
-    void modify(PlaceDescription place);
-
-    void calculateDistance(PlaceDescription place1, PlaceDescription place2);
-
-    List<PlaceDescription> getPlaces();
+    void onItemClickListener(PlaceDescription placeDescription);
 }

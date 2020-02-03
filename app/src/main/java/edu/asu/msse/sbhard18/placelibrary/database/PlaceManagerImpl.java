@@ -47,22 +47,51 @@ public class PlaceManagerImpl implements PlaceManager {
     }
 
     @Override
-    public void add(PlaceDescription place) {
+    public boolean add(PlaceDescription place) {
+        for (int i = 0; i < mPlaceDescriptionList.size(); i++) {
+            if(String.valueOf(mPlaceDescriptionList.get(i)).equals(place.getName())){
+                return false;
+            }
+        }
         mPlaceDescriptionList.add(place);
+        return true;
     }
 
     @Override
     public void remove(PlaceDescription place) {
-
+        PlaceDescription placeDescription = null;
+        for (int i = 0; i < mPlaceDescriptionList.size(); i++) {
+            PlaceDescription temp = mPlaceDescriptionList.get(i);
+            if (temp.getName().equals(place.getName())) {
+                placeDescription = temp;
+                break;
+            }
+        }
+        if (placeDescription != null) {
+            mPlaceDescriptionList.remove(placeDescription);
+        }
     }
 
     @Override
     public void modify(PlaceDescription place) {
-
+        PlaceDescription placeDescription = null;
+        int position = 0;
+        for (int i = 0; i < mPlaceDescriptionList.size(); i++) {
+            PlaceDescription temp = mPlaceDescriptionList.get(i);
+            if (temp.getName().equals(place.getName())) {
+                placeDescription = temp;
+                position = i;
+                break;
+            }
+        }
+        if (placeDescription != null) {
+            mPlaceDescriptionList.remove(placeDescription);
+        }
+        mPlaceDescriptionList.add(position, place);
     }
 
     @Override
-    public void Distance(PlaceDescription place1, PlaceDescription place2) {
+    public void calculateDistance(PlaceDescription place1, PlaceDescription place2) {
 
     }
 

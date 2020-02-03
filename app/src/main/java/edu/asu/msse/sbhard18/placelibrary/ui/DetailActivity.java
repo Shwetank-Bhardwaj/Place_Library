@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import edu.asu.msse.sbhard18.placelibrary.model.PlaceDescription;
 import edu.asu.msse.sbhard18.placelibrary.R;
+
+import static edu.asu.msse.sbhard18.placelibrary.utility.Constants.ADD_ACTIVITY_REQ_CODE;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -19,6 +24,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView mElevationTV;
     private TextView mLatTV;
     private TextView mLongTV;
+    private PlaceDescription mPlaceDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +32,26 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         findAllIds();
         Intent intent = getIntent();
-        PlaceDescription placeDescription = (PlaceDescription) intent.getSerializableExtra("data");
-        setDetails(placeDescription);
+        mPlaceDescription = (PlaceDescription) intent.getSerializableExtra("data");
+        setDetails(mPlaceDescription);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.deletemenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_delete) {
+            Intent data = new Intent();
+            data.putExtra("data", mPlaceDescription);
+            setResult(RESULT_OK, data);
+            finish();
+        }
+        return true;
     }
 
     private void setDetails(PlaceDescription placeDescription) {

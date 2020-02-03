@@ -33,4 +33,6 @@ public class Constants {
     public static final String LONGITUDE = "longitude";
     public static final String IMAGE = "image";
     public static final int ADD_ACTIVITY_REQ_CODE = 667;
+    public static final int EDIT_ACTIVITY_REQ_CODE = 596;
+    public static final int DETAIL_ACTIVITY_REQ_CODE = 472;
 }

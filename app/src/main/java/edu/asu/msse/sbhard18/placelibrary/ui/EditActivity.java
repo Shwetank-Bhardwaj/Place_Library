@@ -5,21 +5,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import java.io.Serializable;
 
 import edu.asu.msse.sbhard18.placelibrary.model.PlaceDescription;
-import edu.asu.msse.sbhard18.placelibrary.R;
+import edu.asu.msse.sbhard18.placelibrary.ui.ModifyActivity;
 
-public class AddActivity extends ModifyActivity {
+public class EditActivity extends ModifyActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        Serializable data = intent.getSerializableExtra("data");
+        mNameTV.setEnabled(false);
+        PlaceDescription placeDescription = (PlaceDescription) data;
+        setDetails(placeDescription);
         setClickListeners();
+    }
+
+    private void setDetails(PlaceDescription placeDescription) {
+        mNameTV.setText(placeDescription.getName());
+        mDescriptionTV.setText(placeDescription.getDescription());
+        mCategoryTV.setText(placeDescription.getCategory());
+        mAddressTitleTV.setText(placeDescription.getAddressTitle());
+        mAddressDetailTV.setText(placeDescription.getAddressDetail());
+        mElevationTV.setText(String.valueOf(placeDescription.getElevation()));
+        mLatTV.setText(String.valueOf(placeDescription.getLatitude()));
+        mLongTV.setText(String.valueOf(placeDescription.getLongitude()));
+        mImageTV.setText(String.valueOf(placeDescription.getImage()));
     }
 
     private void setClickListeners() {
