@@ -18,6 +18,7 @@ import edu.asu.msse.sbhard18.placelibrary.model.PlaceDescription;
 import edu.asu.msse.sbhard18.placelibrary.database.PlaceManager;
 import edu.asu.msse.sbhard18.placelibrary.database.PlaceManagerImpl;
 import edu.asu.msse.sbhard18.placelibrary.R;
+import edu.asu.msse.sbhard18.placelibrary.ui.listeners.RecyclerViewEventListener;
 
 import static edu.asu.msse.sbhard18.placelibrary.utility.Constants.ADD_ACTIVITY_REQ_CODE;
 import static edu.asu.msse.sbhard18.placelibrary.utility.Constants.DETAIL_ACTIVITY_REQ_CODE;

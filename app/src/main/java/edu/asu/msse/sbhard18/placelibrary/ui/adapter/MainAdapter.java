@@ -1,7 +1,6 @@
 package edu.asu.msse.sbhard18.placelibrary.ui.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,7 @@ import java.util.List;
 
 import edu.asu.msse.sbhard18.placelibrary.model.PlaceDescription;
 import edu.asu.msse.sbhard18.placelibrary.R;
-import edu.asu.msse.sbhard18.placelibrary.ui.DetailActivity;
-import edu.asu.msse.sbhard18.placelibrary.ui.EditActivity;
-import edu.asu.msse.sbhard18.placelibrary.ui.RecyclerViewEventListener;
+import edu.asu.msse.sbhard18.placelibrary.ui.listeners.RecyclerViewEventListener;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.PlaceViewHolder> {
 
