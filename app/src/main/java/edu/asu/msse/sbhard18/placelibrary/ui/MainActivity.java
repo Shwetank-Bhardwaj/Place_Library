@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewEvent
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findAllIds();
-        mPlaceManager = new PlaceManagerImpl(this);
+        mPlaceManager = PlaceManagerImpl.getInstance(this);
         setRecyclerView();
     }
 
@@ -48,9 +48,15 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewEvent
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_add) {
-            Intent intent = new Intent(MainActivity.this, AddActivity.class);
-            startActivityForResult(intent, ADD_ACTIVITY_REQ_CODE);
+        switch (item.getItemId()){
+            case R.id.action_add:
+                Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                startActivityForResult(intent, ADD_ACTIVITY_REQ_CODE);
+                break;
+            case R.id.action_navigation:
+                Intent distanceIntent = new Intent(MainActivity.this, DistanceActivity.class);
+                startActivity(distanceIntent);
+                break;
         }
         return true;
     }

@@ -28,7 +28,6 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,11 +37,18 @@ import edu.asu.msse.sbhard18.placelibrary.R;
 
 public class PlaceManagerImpl implements PlaceManager {
     private static final String TAG = PlaceManagerImpl.class.getSimpleName();
+    private static PlaceManagerImpl INSTANCE;
     private Context context;
     private List<PlaceDescription> mPlaceDescriptionList = new ArrayList<>();
     private List<String> mPlaces = new ArrayList<>();
 
-    public PlaceManagerImpl(Context context) {
+    public static PlaceManager getInstance(Context context){
+        if(INSTANCE == null){
+            INSTANCE = new PlaceManagerImpl(context);
+        }
+        return INSTANCE;
+    }
+    private PlaceManagerImpl(Context context) {
         this.context = context;
         initialize();
     }
@@ -92,8 +98,29 @@ public class PlaceManagerImpl implements PlaceManager {
     }
 
     @Override
-    public void calculateDistance(PlaceDescription place1, PlaceDescription place2) {
+    public double calculateDistance(PlaceDescription place1, PlaceDescription place2) {
+        int R = 6371; // Radious of the earth in Km
+        double lat1 = place1.getLatitude();
+        double lon1 = place1.getLongitude();
+        double lat2 = place2.getLatitude();
+        double lon2 = place2.getLongitude();
+        double latDistance = (lat2-lat1)*Math.PI/180;
+        double lonDistance = (lon2-lon1)*Math.PI/180;
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2) +
+                Math.cos(lat1*Math.PI/180) * Math.cos(lat2*Math.PI/180) *
+                        Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
+    }
 
+    @Override
+    public double calculateInitialBearing(PlaceDescription place1, PlaceDescription place2) {
+        double degToRad = Math.PI / 180.0;
+        double phi1 = place1.getLatitude() * degToRad;
+        double lam1 = place1.getLongitude() * degToRad;
+        double phi2 = place2.getLatitude() * degToRad;
+        double lam2 = place2.getLongitude() * degToRad;
+        return Math.atan2(Math.sin(lam2-lam1)*Math.cos(phi2), Math.cos(phi1)*Math.sin(phi2) - Math.sin(phi1)*Math.cos(phi2)*Math.cos(lam2-lam1)) * 180/Math.PI;
     }
 
     @Override

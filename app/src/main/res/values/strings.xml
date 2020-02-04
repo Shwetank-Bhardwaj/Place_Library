@@ -11,4 +11,8 @@
     <string name="image">image</string>
     <string name="save">Save</string>
     <string name="add">Add</string>
+    <string name="navigation">navigation</string>
+    <string name="distance">Distance</string>
+    <string name="initial_bearing">Initial Bearing</string>
+    <string name="calculate">Calculate</string>
 </resources>

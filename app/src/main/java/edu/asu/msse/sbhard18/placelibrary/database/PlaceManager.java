@@ -31,7 +31,9 @@ public interface PlaceManager {
 
     void modify(PlaceDescription place);
 
-    void calculateDistance(PlaceDescription place1, PlaceDescription place2);
+    double calculateDistance(PlaceDescription place1, PlaceDescription place2);
 
     List<PlaceDescription> getPlaces();
+
+    double calculateInitialBearing(PlaceDescription place1, PlaceDescription place2);
 }
