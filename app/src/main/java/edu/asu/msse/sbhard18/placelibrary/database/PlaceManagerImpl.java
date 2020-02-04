@@ -28,6 +28,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class PlaceManagerImpl implements PlaceManager {
     @Override
     public boolean add(PlaceDescription place) {
         for (int i = 0; i < mPlaceDescriptionList.size(); i++) {
-            if(String.valueOf(mPlaceDescriptionList.get(i)).equals(place.getName())){
+            if(String.valueOf(mPlaceDescriptionList.get(i).getName()).toLowerCase().equals(place.getName().toLowerCase())){
                 return false;
             }
         }
