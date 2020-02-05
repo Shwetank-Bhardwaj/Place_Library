@@ -1,5 +1,25 @@
 package edu.asu.msse.sbhard18.placelibrary.ui;
 
+/*
+ * Copyright 2020  Shwetank Bhardwaj,
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @author Shwetank Bhardwaj, sbhard18@asu.edu
+ * Software Engineering, CIDSE, ASU Poly
+ *
+ * @version January 2020
+ */
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -61,6 +81,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewEvent
         return true;
     }
 
+    /*
+    * Receive Add, Edit, Detail Activity result and act accordingly.
+    * */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -91,6 +114,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewEvent
         }
     }
 
+    /*
+    * Updates recycler by updating list and notifying the adapter about it.
+    * */
     protected void updateRecyclerView() {
         mMainAdapter.updateList(mPlaceManager.getPlaces());
     }
@@ -108,6 +134,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewEvent
         mRecyclerView = findViewById(R.id.recycler_View);
     }
 
+    /*
+    * Opens Edit Activity
+    * */
     @Override
     public void onItemLongClickListener(PlaceDescription placeDescription) {
         Intent intent = new Intent(MainActivity.this, EditActivity.class);
@@ -115,6 +144,9 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewEvent
         startActivityForResult(intent, EDIT_ACTIVITY_REQ_CODE);
     }
 
+    /*
+    * Opens Detail Activity
+    * */
     @Override
     public void onItemClickListener(PlaceDescription placeDescription) {
         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
