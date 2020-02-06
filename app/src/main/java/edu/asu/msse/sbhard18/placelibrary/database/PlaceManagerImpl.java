@@ -99,7 +99,7 @@ public class PlaceManagerImpl implements PlaceManager {
 
     @Override
     public double calculateDistance(PlaceDescription place1, PlaceDescription place2) {
-        int R = 6371; // Radious of the earth in Km
+        int R = 6371; // Radius of the earth in Km
         double lat1 = place1.getLatitude();
         double lon1 = place1.getLongitude();
         double lat2 = place2.getLatitude();
