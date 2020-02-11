@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewEvent
     }
 
     private void findAllIds() {
-        mRecyclerView = findViewById(R.id.recycler_View);
+        mRecyclerView = findViewById(R.id.recycler_view);
     }
 
     /*
